@@ -25,3 +25,4 @@ dnf5 -y copr disable bieszczaders/kernel-cachyos-addons
 #### Example for enabling a System Unit File
 
 #systemctl enable podman.socket
+alternatives --set fakeroot /usr/bin/fakeroot-sysv
