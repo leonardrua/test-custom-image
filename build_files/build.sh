@@ -15,9 +15,12 @@ dnf5 install -y waydroid
 # Use a COPR Example:
 #
 dnf5 -y copr enable cuteneko/waydroid-helper
+dnf5 -y copr enable bieszczaders/kernel-cachyos-addons
 dnf5 -y install waydroid-helper
+dnf5 -y install ananicy-cpp
 # Disable COPRs so they don't end up enabled on the final image:
 dnf5 -y copr disable cuteneko/waydroid-helper
+dnf5 -y copr disable bieszczaders/kernel-cachyos-addons
 
 #### Example for enabling a System Unit File
 
