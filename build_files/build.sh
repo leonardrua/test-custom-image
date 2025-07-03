@@ -17,6 +17,7 @@ dnf5 install -y waydroid
 dnf5 -y copr enable cuteneko/waydroid-helper
 dnf5 -y copr enable bieszczaders/kernel-cachyos-addons
 dnf5 -y copr enable bieszczaders/kernel-cachyos
+dnf5 -y config-manager addrepo --from-repofile=https://repo.vivaldi.com/archive/vivaldi-fedora.repo
 
 dnf5 -y install kernel-cachyos kernel-cachyos-devel-matched
 
@@ -24,6 +25,7 @@ for pkg in kernel kernel-core kernel-modules kernel-modules-core kernel-modules-
     rpm --erase $pkg --nodeps
 done
 
+dnf5 -y install vivaldi-stable
 dnf5 -y install waydroid-helper
 dnf5 -y install ananicy-cpp
 dnf5 -y install cachyos-ksm-settings
