@@ -36,6 +36,4 @@ KERNEL="$(rpm -qa | grep -P 'kernel-(|'"cachyos"'-)(\d+\.\d+\.\d+)' | sed -E 's/
 /usr/bin/dracut --no-hostonly --kver "$KERNEL" --reproducible -v --add ostree -f "/lib/modules/$KERNEL/initramfs.img"
 chmod 0600 "/lib/modules/$KERNEL/initramfs.img"
 
-systemctl enable ksmd.service
-
 alternatives --set fakeroot /usr/bin/fakeroot-sysv
