@@ -25,7 +25,9 @@ for pkg in kernel kernel-core kernel-modules kernel-modules-core kernel-modules-
     rpm --erase $pkg --nodeps
 done
 
+mkdir -p "/var/opt" && ln -s "/var/opt" "/opt"
 dnf5 -y install vivaldi-stable
+mkdir -p "/usr/lib/opt/vivaldi" && ln -s "/usr/lib/opt/vivaldi" "/var/opt/vivaldi"
 dnf5 -y install waydroid-helper
 dnf5 -y install ananicy-cpp
 dnf5 -y install cachyos-ksm-settings
