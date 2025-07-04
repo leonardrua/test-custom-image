@@ -26,7 +26,7 @@ for pkg in kernel kernel-core kernel-modules kernel-modules-core kernel-modules-
 done
 
 mkdir -p "/var/opt" && ln -s "/var/opt" "/opt"
-mkdir -p "/usr/lib/opt/vivaldi" && ln -s "/usr/lib/vivaldi" "/var/opt/vivaldi"
+mkdir -p "/usr/lib/vivaldi" && ln -s "/usr/lib/vivaldi" "/var/opt/vivaldi"
 dnf5 -y install vivaldi-stable
 ln -sf "/usr/lib/vivaldi/vivaldi" "/usr/bin/vivaldi-stable"
 chmod +x "/usr/share/applications/vivaldi-stable.desktop"
