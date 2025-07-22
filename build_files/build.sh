@@ -24,7 +24,6 @@ for pkg in kernel kernel-core kernel-modules kernel-modules-core kernel-modules-
     rpm --erase $pkg --nodeps
 done
 
-chmod +x "/usr/share/applications/vivaldi-stable.desktop"
 dnf5 -y install waydroid-helper
 dnf5 -y install ananicy-cpp
 dnf5 -y install cachyos-ksm-settings
