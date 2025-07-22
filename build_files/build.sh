@@ -17,7 +17,6 @@ dnf5 install -y waydroid
 dnf5 -y copr enable cuteneko/waydroid-helper
 dnf5 -y copr enable bieszczaders/kernel-cachyos-addons
 dnf5 -y copr enable bieszczaders/kernel-cachyos
-dnf5 -y config-manager addrepo --from-repofile=https://repo.vivaldi.com/archive/vivaldi-fedora.repo
 
 dnf5 -y install kernel-cachyos kernel-cachyos-devel-matched
 
@@ -25,10 +24,6 @@ for pkg in kernel kernel-core kernel-modules kernel-modules-core kernel-modules-
     rpm --erase $pkg --nodeps
 done
 
-mkdir -p "/var/opt" && ln -s "/var/opt" "/opt"
-mkdir -p "/usr/lib/vivaldi" && ln -s "/usr/lib/vivaldi" "/var/opt/vivaldi"
-dnf5 -y install vivaldi-stable
-ln -sf "/usr/lib/vivaldi/vivaldi" "/usr/bin/vivaldi-stable"
 chmod +x "/usr/share/applications/vivaldi-stable.desktop"
 dnf5 -y install waydroid-helper
 dnf5 -y install ananicy-cpp
