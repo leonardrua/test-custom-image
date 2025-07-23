@@ -15,8 +15,10 @@ dnf5 install -y waydroid
 # Use a COPR Example:
 #
 dnf5 -y copr enable cuteneko/waydroid-helper
+dnf5 -y config-manager addrepo --from-repofile=https://pkg.cloudflareclient.com/cloudflare-warp-ascii.repo
 
 dnf5 -y install waydroid-helper
+dnf5 -y install cloudflare-warp
 # Disable COPRs so they don't end up enabled on the final image:
 dnf5 -y copr disable cuteneko/waydroid-helper
 
