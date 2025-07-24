@@ -21,7 +21,7 @@ dnf5 -y copr enable bieszczaders/kernel-cachyos
 dnf5 -y install kernel-cachyos kernel-cachyos-devel-matched
 
 
-for pkg in kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra; do
+for pkg in kernel kernel-core kernel-devel kernel-modules kernel-modules-core kernel-modules-extra; do
     rpm --erase $pkg --nodeps
 done
 
@@ -38,5 +38,7 @@ dnf5 -y copr disable cuteneko/waydroid-helper
 KERNEL="$(rpm -qa | grep -P 'kernel-(|'"cachyos"'-)(\d+\.\d+\.\d+)' | sed -E 's/kernel-(|'"cachyos"'-)//')"
 /usr/bin/dracut --no-hostonly --kver "$KERNEL" --reproducible -v --add ostree -f "/lib/modules/$KERNEL/initramfs.img"
 chmod 0600 "/lib/modules/$KERNEL/initramfs.img"
+
+echo "v4l2loopback" >/usr/lib/modules-load.d/v4l2loopback.conf
 
 alternatives --set fakeroot /usr/bin/fakeroot-sysv
