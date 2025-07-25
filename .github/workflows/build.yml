@@ -126,15 +126,28 @@ jobs:
       # You can enable it by uncommenting the following lines:
       - name: Run Rechunker
         id: rechunk
-        uses: hhd-dev/rechunk@f153348d8100c1f504dec435460a0d7baf11a9d2 # v1.1.1
+        uses: hhd-dev/rechunk@ca77507401f8700bb0b25ebecbbf980a078cd180 # v1.2.2
         with:
-          rechunk: 'ghcr.io/hhd-dev/rechunk:v1.0.1'
-          image: "${{ env.IMAGE_NAME }}"
+          rechunk: "ghcr.io/hhd-dev/rechunk:v1.2.2"
+          ref: "localhost/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}"
           prev-ref: "${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}"
-          skip_compression: true
-          version: ${{ env.CENTOS_VERSION }}
+          skip_compression: false
+          max-layers: 100
           labels: ${{ steps.metadata.outputs.labels }} # Rechunk strips out all the labels during build, this needs to be reapplied here with newline separator
 
+      - name: Rechunk output
+        run: |
+          if [[ "${{ steps.rechunk.conclusion }}" == "success" ]]; then
+            echo "${{ steps.rechunk.outputs.changelog }}"
+            echo "${{ steps.rechunk.outputs.manifest }}"
+            cat "${{ steps.rechunk.outputs.changelog }}"
+            cat "${{ steps.rechunk.outputs.manifest }}"
+
+          else
+            echo "Rechunk conclusion:"
+            echo "${{ steps.rechunk.conclusion }}"
+          fi
+          
       - name: Remove Rechunker image
         run: |
           image=$(sudo podman images -n --sort repository --format '{{.ID}} {{.Repository}}' | grep rechunk | awk '{print $1}')
