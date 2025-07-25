@@ -34,6 +34,8 @@ dnf5 -y install cachyos-ksm-settings
 dnf5 -y install cachyos-settings --allowerasing
 # Disable COPRs so they don't end up enabled on the final image:
 dnf5 -y copr disable cuteneko/waydroid-helper
+dnf5 -y copr disable bieszczaders/kernel-cachyos-addons
+dnf5 -y copr disable bieszczaders/kernel-cachyos
 
 KERNEL="$(rpm -qa | grep -P 'kernel-(|'"cachyos"'-)(\d+\.\d+\.\d+)' | sed -E 's/kernel-(|'"cachyos"'-)//')"
 /usr/bin/dracut --no-hostonly --kver "$KERNEL" --reproducible -v --add ostree -f "/lib/modules/$KERNEL/initramfs.img"
